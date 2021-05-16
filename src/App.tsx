@@ -9,7 +9,6 @@ export default function App() {
       <div className="App">
         <h3>Shapes with CSS</h3>
         <LiveCoder />
-        <hr />
       </div>
     </Provider>
   );

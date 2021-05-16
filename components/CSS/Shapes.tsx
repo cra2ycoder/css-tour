@@ -1,6 +1,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCode } from "../../redux/livecoder";
+import CSSOptions from "./CSSOptions";
+import { getCSSString } from "../../utils";
 
 const styleSheetObject = {
   dimension: {
@@ -19,27 +21,7 @@ export const Shapes = () => {
   const [className, setClassName] = useState([]);
   const actionDispatch = useDispatch();
 
-  const getCSSString = () => {
-    const getStylesheet = (obj) => {
-      let cssString = ``;
-      Object.keys(obj).forEach((key) => {
-        cssString += `${key}: ${obj[key]};\n`;
-      });
-      return cssString;
-    };
-
-    return className
-      .map(
-        (x) => `.${x} {
-        ${getStylesheet(styleSheetObject[x])}
-    }`
-      )
-      .join(" ");
-  };
-
-  const handleChange = (e) => {
-    const { id, checked } = e.target;
-
+  const handleChange = ({ id, checked }: any) => {
     if (checked === true) {
       className.push(id);
     } else {
@@ -49,7 +31,7 @@ export const Shapes = () => {
   };
 
   const css = useMemo(() => {
-    return getCSSString();
+    return getCSSString(className, styleSheetObject);
   }, [className]);
 
   useEffect(() => {
@@ -71,16 +53,7 @@ export const Shapes = () => {
           <div className={className.join(" ")}></div>
         </div>
       </div>
-      <div id="action-buttons" style={{ fontSize: "12px" }}>
-        {Object.keys(styleSheetObject).map((key: string, idx: number) => {
-          return (
-            <label key={`button-${idx}`}>
-              <input type="checkbox" id={key} onChange={handleChange} />
-              {key}
-            </label>
-          );
-        })}
-      </div>
+      <CSSOptions options={styleSheetObject} onChange={handleChange} />
     </>
   );
 };
