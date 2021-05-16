@@ -14,10 +14,11 @@ function CodeEditor() {
       style={{
         display: "flex",
         width: "100%",
+        flexWrap: "wrap",
         justifyContent: "space-between"
       }}
     >
-      <div style={{ width: "50%" }}>
+      <div style={{ width: "100%", marginBottom: "2rem" }}>
         <h5 style={{ margin: 0 }}>HTML</h5>
         <CodeMirror
           value={code?.html?.trim()}
@@ -32,7 +33,7 @@ function CodeEditor() {
           onChange={(editor, data, value) => {}}
         />
       </div>
-      <div style={{ width: `calc(50% - 4px)` }}>
+      <div style={{ width: `100%` }}>
         <h5 style={{ margin: 0 }}>CSS</h5>
         <CodeMirror
           value={code?.css?.replace(/        /g, " ")}
