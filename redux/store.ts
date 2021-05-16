@@ -5,8 +5,6 @@ import { configureStore } from "@reduxjs/toolkit";
  * importing the reducers to pass it to redux store
  * to use it every where in App
  */
-import counterReducer from "./counter/slice";
-import multiSelectReducer from "./multiselect/slice";
 import liveCoderReducer from "./livecoder/slice";
 
 /**
@@ -15,8 +13,6 @@ import liveCoderReducer from "./livecoder/slice";
  */
 export default configureStore({
   reducer: {
-    counterReducer,
-    multiSelectReducer,
     liveCoderReducer
   }
 });
