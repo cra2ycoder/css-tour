@@ -1,3 +1,4 @@
+import { Box, Typography } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/mode/xml/xml";
@@ -10,16 +11,9 @@ function CodeEditor() {
   const actionDispatch = useDispatch();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        flexWrap: "wrap",
-        justifyContent: "space-between"
-      }}
-    >
-      <div style={{ width: "100%", marginBottom: "2rem" }}>
-        <h5 style={{ margin: 0 }}>HTML</h5>
+    <>
+      <Box mb={4}>
+        <Typography variant="h2">HTML</Typography>
         <CodeMirror
           value={code?.html?.trim()}
           options={{
@@ -32,9 +26,9 @@ function CodeEditor() {
           }}
           onChange={(editor, data, value) => {}}
         />
-      </div>
-      <div style={{ width: `100%` }}>
-        <h5 style={{ margin: 0 }}>CSS</h5>
+      </Box>
+      <Box>
+        <Typography variant="h2">CSS</Typography>
         <CodeMirror
           value={code?.css?.replace(/        /g, " ")}
           options={{
@@ -47,8 +41,8 @@ function CodeEditor() {
           }}
           onChange={(editor, data, value) => {}}
         />
-      </div>
-    </div>
+      </Box>
+    </>
   );
 }
 

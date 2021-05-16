@@ -1,5 +1,12 @@
-export const getCSSString = (className: string[], stylesheet: object) => {
-  const getStylesheet = (obj) => {
+/**
+ *
+ * @param className
+ * @param stylesheet
+ *
+ * @todo typings
+ */
+export const getCSSString = (className: string[], stylesheet: any) => {
+  const getStylesheet = (obj: any) => {
     let cssString = ``;
     Object.keys(obj).forEach((key) => {
       cssString += `${key}: ${obj[key]};\n`;

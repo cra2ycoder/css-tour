@@ -1,24 +1,49 @@
 import { memo } from "react";
+import { useFormik } from "formik";
+import { Checkbox, FormControlLabel, Typography } from "@material-ui/core";
 
 function CSSOptions(props: any) {
   const { options = {}, onChange = () => {} } = props;
 
-  const handleChange = (e) => {
-    const { id, checked } = e.target;
-    onChange({ id, checked });
+  // const formik = useFormik({
+  //   initialValues: {},
+  //   validateOnChange: (values) => {
+  //     console.log({ values });
+  //   },
+  //   onSubmit: (values) => {
+  //     console.log({ values });
+  //     // alert(JSON.stringify(values, null, 2));
+  //   }
+  // });
+
+  const handleChange = (cbState) => {
+    console.log({ cbState });
+
+    // const { id, checked } = e.target;
+    // onChange({ id, checked });
   };
 
   return (
-    <div id="css-options" style={{ fontSize: "12px" }}>
-      {Object.keys(options).map((key: string, idx: number) => {
-        return (
-          <label key={`button-${idx}`}>
-            <input type="checkbox" id={key} onChange={handleChange} />
-            {key}
-          </label>
-        );
-      })}
-    </div>
+    <>
+      <Typography variant="overline">CSS Properties:</Typography>
+      <form onChange={handleChange}>
+        {Object.keys(options).map((key: string, idx: number) => {
+          return (
+            <FormControlLabel
+              label={key}
+              control={
+                <Checkbox
+                  key={`button-${idx}`}
+                  id={key}
+                  // onChange={formik.handleChange}
+                  title={key}
+                />
+              }
+            />
+          );
+        })}
+      </form>
+    </>
   );
 }
 

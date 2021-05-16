@@ -1,3 +1,4 @@
+import { Box, Button, Divider } from "@material-ui/core";
 import { useState } from "react";
 import CodeEditor from "./CodeEditor";
 import componentList from "../CSS/ComponentList";
@@ -12,13 +13,23 @@ function LiveCoder() {
   return (
     <>
       {componentList.map((x, idx) => (
-        <button key={`btn-${idx}`} onClick={() => renderComponent(x)}>
+        <Button
+          key={`btn-${idx}`}
+          size="small"
+          color="primary"
+          variant="outlined"
+          onClick={() => renderComponent(x)}
+        >
           {x.name}
-        </button>
+        </Button>
       ))}
-      <hr />
-      <div>{activeComponent?.component || <></>}</div>
-      <hr />
+      <Box pt={2} pb={2}>
+        <Divider />
+        <Box pt={2} pb={2}>
+          {activeComponent?.component || <></>}
+        </Box>
+        <Divider />
+      </Box>
       <CodeEditor />
     </>
   );
