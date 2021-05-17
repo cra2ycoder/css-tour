@@ -9,12 +9,13 @@ export const getCSSString = (className: string[], stylesheet: any) => {
   const getStylesheet = (obj: any) => {
     let cssString = ``;
     Object.keys(obj).forEach((key) => {
-      cssString += `${key}: ${obj[key]};\n`;
+      cssString += `\n\t${key}: ${obj[key]};`;
     });
     return cssString;
   };
 
   return className
-    .map((x) => `.${x} { ${getStylesheet(stylesheet[x])} }`)
-    .join(" ");
+    .map((x) => `\n\n.${x} { ${getStylesheet(stylesheet[x])}\n}`)
+    .join(" ")
+    .trim();
 };

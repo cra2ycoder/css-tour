@@ -1,48 +1,42 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useFormik } from "formik";
 import { Checkbox, FormControlLabel, Typography } from "@material-ui/core";
 
 function CSSOptions(props: any) {
   const { options = {}, onChange = () => {} } = props;
 
-  // const formik = useFormik({
-  //   initialValues: {},
-  //   validateOnChange: (values) => {
-  //     console.log({ values });
-  //   },
-  //   onSubmit: (values) => {
-  //     console.log({ values });
-  //     // alert(JSON.stringify(values, null, 2));
-  //   }
-  // });
+  const formik = useFormik({
+    initialValues: {},
+    onSubmit: (values) => {
+      console.log({ values });
+    }
+  });
 
-  const handleChange = (cbState) => {
-    console.log({ cbState });
-
-    // const { id, checked } = e.target;
-    // onChange({ id, checked });
-  };
+  useEffect(() => {
+    // console.log(formik.values);
+    onChange(formik.values);
+  }, [formik.values]);
 
   return (
     <>
       <Typography variant="overline">CSS Properties:</Typography>
-      <form onChange={handleChange}>
-        {Object.keys(options).map((key: string, idx: number) => {
-          return (
-            <FormControlLabel
-              label={key}
-              control={
-                <Checkbox
-                  key={`button-${idx}`}
-                  id={key}
-                  // onChange={formik.handleChange}
-                  title={key}
-                />
-              }
-            />
-          );
-        })}
-      </form>
+      {Object.keys(options).map((key: string, idx: number) => {
+        return (
+          <FormControlLabel
+            key={`form-control-${idx}`}
+            label={key}
+            control={
+              <Checkbox
+                key={`button-${idx}`}
+                id={key}
+                name={key}
+                onChange={formik.handleChange}
+                title={key}
+              />
+            }
+          />
+        );
+      })}
     </>
   );
 }

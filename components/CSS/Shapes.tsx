@@ -21,13 +21,11 @@ export const Shapes = () => {
   const [className, setClassName] = useState([]);
   const actionDispatch = useDispatch();
 
-  const handleChange = ({ id, checked }: any) => {
-    if (checked === true) {
-      className.push(id);
-    } else {
-      className.splice(className.indexOf(id), 1);
-    }
-    setClassName([...className]);
+  const handleChange = (formikValues: any) => {
+    const classList: string[] = Object.keys(formikValues).filter(
+      (x) => formikValues[x] === true
+    );
+    setClassName([...classList]);
   };
 
   const css = useMemo(() => {
