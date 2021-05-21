@@ -5,7 +5,7 @@ import CSSBuilder from "../CSS/CSSBuilder";
 import componentList from "../../styleguide";
 
 function LiveCoder() {
-  const [activeStyleGuide, setActiveStyleGuide] = useState({});
+  const [activeStyleGuide, setActiveStyleGuide] = useState(componentList[0]);
 
   return (
     <>

@@ -9,7 +9,7 @@ interface ICSSBuilderProps {
 }
 
 function CSSBuilder(props: ICSSBuilderProps) {
-  const { stylesheet = {} } = props;
+  const { stylesheet = {}, name = "" } = props;
 
   const [className, setClassName] = useState([]);
   const actionDispatch = useDispatch();
@@ -21,27 +21,27 @@ function CSSBuilder(props: ICSSBuilderProps) {
     setClassName([...classList]);
   };
 
-  const css = useMemo(() => {
+  const RESULT = useMemo(() => {
     return getCSSString(className, stylesheet);
   }, [className, stylesheet]);
 
   useEffect(() => {
-    const html = document.querySelectorAll(`#shapes #html`)[0]?.innerHTML;
-    const css = document.querySelectorAll(`#shapes #css`)[0]?.innerHTML;
+    const html = document.querySelectorAll(`#${name} #html`)[0]?.innerHTML;
+    const css = document.querySelectorAll(`#${name} #css`)[0]?.innerHTML;
     actionDispatch(setCode({ html, css }));
   }, [className]);
 
   return (
     <>
-      <div id="shapes">
+      <div id={name}>
         <style
           id="css"
           dangerouslySetInnerHTML={{
-            __html: css
+            __html: RESULT.css.join(" ").trim()
           }}
         />
         <div id="html">
-          <div className={className.join(" ")}></div>
+          <div className={RESULT.classList.join(" ")}>{name}</div>
         </div>
       </div>
       <CSSOptions options={stylesheet} onChange={handleChange} />

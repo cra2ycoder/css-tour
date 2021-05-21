@@ -20,21 +20,30 @@ function CSSOptions(props: any) {
     <Box flexWrap="wrap">
       <Typography variant="overline">CSS Properties:</Typography>
       <Box>
-        {Object.keys(options).map((key: string, idx: number) => {
+        {Object.keys(options).map((group: string, idx: number) => {
           return (
-            <FormControlLabel
-              key={`form-control-${idx}`}
-              label={key}
-              control={
-                <Checkbox
-                  key={`button-${idx}`}
-                  id={key}
-                  name={key}
-                  onChange={formik.handleChange}
-                  title={key}
-                />
-              }
-            />
+            <Box flexWrap="wrap" width="100%">
+              <Typography variant="overline">{group}:</Typography>
+              <Box>
+                {Object.keys(options[group]).map((key: string, idx: number) => {
+                  return (
+                    <FormControlLabel
+                      key={`form-control-${idx}`}
+                      label={key}
+                      control={
+                        <Checkbox
+                          key={`button-${idx}`}
+                          id={key}
+                          name={`${group}#${key}`}
+                          onChange={formik.handleChange}
+                          title={key}
+                        />
+                      }
+                    />
+                  );
+                })}
+              </Box>
+            </Box>
           );
         })}
       </Box>

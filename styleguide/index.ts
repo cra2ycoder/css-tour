@@ -2,14 +2,20 @@ import { margin, padding, dimension, bgColor, radius } from "./base";
 
 export default [
   {
-    name: "Shapes",
-    parentId: "shapes",
+    name: "shapes",
     stylesheet: {
-      ...margin,
-      ...padding,
-      ...dimension,
-      ...bgColor,
-      ...radius
+      margin,
+      padding,
+      dimension,
+      bgColor,
+      radius
+    }
+  },
+  {
+    name: "typography",
+    stylesheet: {
+      margin,
+      padding
     }
   }
 ];
