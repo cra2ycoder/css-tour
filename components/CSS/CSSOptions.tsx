@@ -26,8 +26,9 @@ function CSSOptions(props: any) {
         right: 0,
         top: 0,
         width: "300px",
-        height: "100%",
-        backgroundColor: "white"
+        height: "calc(100% - 2rem)",
+        backgroundColor: "white",
+        overflowY: "scroll"
       }}
     >
       <Typography variant="overline">CSS Properties:</Typography>
