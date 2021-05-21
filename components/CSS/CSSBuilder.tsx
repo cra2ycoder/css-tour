@@ -1,23 +1,16 @@
 import { useState, useMemo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCode } from "../../redux/livecoder";
-import CSSOptions from "./CSSOptions";
 import { getCSSString } from "../../utils";
+import CSSOptions from "./CSSOptions";
 
-const styleSheetObject = {
-  dimension: {
-    width: "100px",
-    height: "100px"
-  },
-  bgColor: {
-    "background-color": "red"
-  },
-  radius: {
-    "border-radius": "50%"
-  }
-};
+interface ICSSBuilderProps {
+  stylesheet?: any;
+}
 
-export const Shapes = () => {
+function CSSBuilder(props: ICSSBuilderProps) {
+  const { stylesheet = {} } = props;
+
   const [className, setClassName] = useState([]);
   const actionDispatch = useDispatch();
 
@@ -29,8 +22,8 @@ export const Shapes = () => {
   };
 
   const css = useMemo(() => {
-    return getCSSString(className, styleSheetObject);
-  }, [className]);
+    return getCSSString(className, stylesheet);
+  }, [className, stylesheet]);
 
   useEffect(() => {
     const html = document.querySelectorAll(`#shapes #html`)[0]?.innerHTML;
@@ -51,7 +44,10 @@ export const Shapes = () => {
           <div className={className.join(" ")}></div>
         </div>
       </div>
-      <CSSOptions options={styleSheetObject} onChange={handleChange} />
+      <CSSOptions options={stylesheet} onChange={handleChange} />
     </>
   );
-};
+}
+
+export { CSSBuilder };
+export default CSSBuilder;
