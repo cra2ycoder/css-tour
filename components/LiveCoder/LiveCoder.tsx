@@ -1,14 +1,11 @@
 import { Box, Button, Divider } from "@material-ui/core";
 import { useState } from "react";
 import CodeEditor from "./CodeEditor";
-import componentList from "../CSS/ComponentList";
+import CSSBuilder from "../CSS/CSSBuilder";
+import componentList from "../../styleguide";
 
 function LiveCoder() {
-  const [activeComponent, setActiveComponent] = useState(null);
-
-  const renderComponent = (activeComponent: any) => {
-    setActiveComponent(activeComponent);
-  };
+  const [activeStyleGuide, setActiveStyleGuide] = useState({});
 
   return (
     <>
@@ -18,7 +15,7 @@ function LiveCoder() {
           size="small"
           color="primary"
           variant="outlined"
-          onClick={() => renderComponent(x)}
+          onClick={() => setActiveStyleGuide(x)}
         >
           {x.name}
         </Button>
@@ -26,7 +23,7 @@ function LiveCoder() {
       <Box pt={2} pb={2}>
         <Divider />
         <Box pt={2} pb={2}>
-          {activeComponent?.component || <></>}
+          <CSSBuilder {...activeStyleGuide} />
         </Box>
         <Divider />
       </Box>
