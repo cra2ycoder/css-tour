@@ -17,7 +17,19 @@ function CSSOptions(props: any) {
   }, [formik?.values]);
 
   return (
-    <Box flexWrap="wrap">
+    <Box
+      flexWrap="wrap"
+      style={{
+        position: "fixed",
+        zIndex: 99,
+        padding: "1rem",
+        right: 0,
+        top: 0,
+        width: "300px",
+        height: "100%",
+        backgroundColor: "white"
+      }}
+    >
       <Typography variant="overline">CSS Properties:</Typography>
       <Box>
         {Object.keys(options).map((group: string, idx: number) => {
