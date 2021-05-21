@@ -26,10 +26,10 @@ function CSSBuilder(props: ICSSBuilderProps) {
     return getCSSString(cssProperties, stylesheet);
   }, [cssProperties]);
 
-  useEffect(() => {
-    cssProperties.splice(0, cssProperties.length);
-    setCSSProperties([]);
-  }, [stylesheet, name]);
+  // useEffect(() => {
+  //   cssProperties.splice(0, cssProperties.length);
+  //   setCSSProperties([]);
+  // }, [stylesheet, name]);
 
   useEffect(() => {
     const html = document.querySelectorAll(`#${name} #html`)[0]?.innerHTML;
