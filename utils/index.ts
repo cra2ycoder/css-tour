@@ -6,23 +6,18 @@
  * @todo typings
  */
 export const getCSSString = (className: string[], stylesheet: any) => {
+  console.log({ className, stylesheet });
+
   const getStylesheet = (cssProp: string, group: string) => {
+    console.log({ cssProp, group });
+
     return `\n\t${cssProp}: ${
       stylesheet[group][cssProp] || stylesheet[cssProp]
     };`;
   };
 
-  const value = {
-    classList: [],
-    css: []
-  };
-
-  className.forEach((x) => {
+  return className.map((x) => {
     const [group, cssProp] = x.split("#");
-    const cssString = `\n\n.${cssProp} { ${getStylesheet(cssProp, group)}\n}`;
-    value.classList.push(cssProp);
-    value.css.push(cssString);
+    return `${getStylesheet(cssProp, group)}`;
   });
-
-  return value;
 };

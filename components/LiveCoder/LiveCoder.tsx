@@ -2,20 +2,20 @@ import { Box, Button, Divider } from "@material-ui/core";
 import { useState } from "react";
 import CodeEditor from "./CodeEditor";
 import CSSBuilder from "../CSS/CSSBuilder";
-import componentList from "../../styleguide";
+import styleGuideList from "../../styleguide";
 
 function LiveCoder() {
-  const [activeStyleGuide, setActiveStyleGuide] = useState(componentList[0]);
+  const [activeStyleGuide, setActiveStyleGuide] = useState(styleGuideList[0]);
 
   return (
     <>
-      {componentList.map((x, idx) => (
+      {styleGuideList.map((x, idx) => (
         <Button
           key={`btn-${idx}`}
           size="small"
           color="primary"
           variant="outlined"
-          onClick={() => setActiveStyleGuide(x)}
+          onClick={() => setActiveStyleGuide({ ...x })}
         >
           {x.name}
         </Button>
